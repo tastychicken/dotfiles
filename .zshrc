@@ -119,8 +119,5 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-# echo random line from tao te ching
-echo $(grep -v '^$' ~/tao-te-ching | shuf -n 1)
-
 # disable starting browser until windows terminal + tmux issues are fixed
 export BROWSER=none
