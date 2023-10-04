@@ -28,3 +28,6 @@ vim.keymap.set("", "<S-f>", "<c-v>")
 
 -- reload config
 vim.keymap.set("", "<leader>r", ":source $HOME/.config/nvim/init.lua<CR>")
+
+-- set leader
+vim.g.mapleader = ' '
