@@ -1,4 +1,3 @@
-print("loaded set")
 vim.opt.syntax = "on" -- syntax highlighting
 vim.opt.cmdheight = 1 -- height of command bar
 vim.opt.ruler = true -- show current position

@@ -1,5 +1,3 @@
-print("loaded remap")
-
 -- custom binds
 -- <Leader> is '\'
 -- C is the CTRL key
