@@ -107,6 +107,7 @@ source $ZSH/oh-my-zsh.sh
 alias vi='nvim'
 alias psx='powershell.exe'
 alias fucking='sudo'
+alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
 # http://www.bigsoft.co.uk/blog/2008/04/11/configuring-ls_colors
 # no = NORMAL/DEFAULT
@@ -118,9 +119,6 @@ LS_COLORS='no=00;37:di=02;40:ow=00;41:st=00;41:tw=00;41:fi=00;97:ex=31;37:ln=04;
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-# echo random line from tao te ching
-echo $(grep -v '^$' ~/tao-te-ching | shuf -n 1)
 
 # disable starting browser until windows terminal + tmux issues are fixed
 export BROWSER=none
