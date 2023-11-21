@@ -122,3 +122,5 @@ export NVM_DIR="$HOME/.nvm"
 
 # disable starting browser until windows terminal + tmux issues are fixed
 export BROWSER=none
+
+alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
