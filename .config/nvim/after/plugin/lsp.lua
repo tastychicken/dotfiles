@@ -8,7 +8,7 @@ end)
 
 require('mason').setup()
 require('mason-lspconfig').setup({
-  ensure_installed = {'tsserver', 'rust_analyzer'},
+  ensure_installed = {'tsserver', 'rust_analyzer', 'omnisharp'},
   handlers = {
     lsp.default_setup
   }

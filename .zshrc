@@ -122,3 +122,16 @@ export NVM_DIR="$HOME/.nvm"
 
 # disable starting browser until windows terminal + tmux issues are fixed
 export BROWSER=none
+
+alias db-tunnel="db_tunnel"
+db_tunnel () {
+        db_tunnel_pid=$(pgrep -o -f "ssh -N -f -L 9001:localhost:5432 pds-postgres")
+        if [[ -n $pds_tunnel_pid ]]
+        then
+                echo "resetting db-tunnel"
+                kill $db_tunnel_pid
+        fi
+        ssh -N -f -L 9001:localhost:5432 pds-postgres
+}
+
+eval `ssh-agent -s`
