@@ -15,6 +15,7 @@ vim.opt.smartcase = true -- attempt to resolve cases better when searching
 vim.opt.hlsearch = true -- highlight search results
 vim.opt.incsearch = true -- make search act like modern browsers
 vim.opt.showmatch = true -- show matching brackets when indicator is over them
+vim.opt.encoding = "utf-8" -- set encoding to utf-8
 
 -- highlight cursor line
 vim.opt.cursorline = true

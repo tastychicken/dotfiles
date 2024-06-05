@@ -146,4 +146,4 @@ db_tunnel () {
         ssh -N -f -L 9001:localhost:5432 pds-postgres
 }
 
-eval `ssh-agent -s`
+eval `ssh-agent -s` &> /dev/null
