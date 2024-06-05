@@ -107,11 +107,8 @@ source $ZSH/oh-my-zsh.sh
 alias vi='nvim'
 alias psx='powershell.exe'
 alias fucking='sudo'
-<<<<<<< Updated upstream
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
-=======
 alias i='rm -rf node_modules/ && time npm install'
->>>>>>> Stashed changes
 
 # http://www.bigsoft.co.uk/blog/2008/04/11/configuring-ls_colors
 # no = NORMAL/DEFAULT
