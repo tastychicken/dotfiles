@@ -107,7 +107,11 @@ source $ZSH/oh-my-zsh.sh
 alias vi='nvim'
 alias psx='powershell.exe'
 alias fucking='sudo'
+<<<<<<< Updated upstream
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+=======
+alias i='rm -rf node_modules/ && time npm install'
+>>>>>>> Stashed changes
 
 # http://www.bigsoft.co.uk/blog/2008/04/11/configuring-ls_colors
 # no = NORMAL/DEFAULT
@@ -123,10 +127,21 @@ export NVM_DIR="$HOME/.nvm"
 # disable starting browser until windows terminal + tmux issues are fixed
 export BROWSER=none
 
+alias pds-tunnel="pds_tunnel"
+pds_tunnel () {
+        pds_tunnel_pid=$(pgrep -o -f "ssh -N -f -L 6666:localhost:5432 per-lnx02-admin")
+        if [[ -n $pds_tunnel_pid ]]
+        then
+                echo "resetting pds-tunnel"
+                kill $pds_tunnel_pid
+        fi
+        ssh -N -f -L 6666:localhost:5432 per-lnx02-admin
+}
+
 alias db-tunnel="db_tunnel"
 db_tunnel () {
-        db_tunnel_pid=$(pgrep -o -f "ssh -N -f -L 9001:localhost:5432 pds-postgres")
-        if [[ -n $pds_tunnel_pid ]]
+        db_tunnel_pid=$(pgrep -o -f "ssh -N -f -L 1337:localhost:5432 pds-postgres")
+        if [[ -n $db_tunnel_pid ]]
         then
                 echo "resetting db-tunnel"
                 kill $db_tunnel_pid

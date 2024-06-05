@@ -27,3 +27,6 @@ vim.opt.autoread = true
 -- colorscheme
 vim.cmd.colorscheme "nightfox"
 vim.api.nvim_set_hl(0, "Normal", {guibg=NONE, ctermbg=NONE})
+
+-- disable swap files
+vim.opt.swapfile = false
