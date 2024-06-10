@@ -17,11 +17,11 @@ vim.keymap.set("", "<C-c>", "<cmd>lua require('goto-preview').close_all_win()<cr
 vim.keymap.set("", "<Esc>", "<cmd>lua require('goto-preview').close_all_win()<cr>")
 
 -- trouble
-vim.keymap.set("n", "<leader>td", function() require("trouble").open("diagnostics") end)
-vim.keymap.set("n", "<leader>tq", function() require("trouble").open("quickfix") end)
-vim.keymap.set("n", "<leader>tl", function() require("trouble").open("loclist") end)
-vim.keymap.set("n", "<leader>tr", function() require("trouble").open("lsp_references") end)
-vim.keymap.set("n", "<leader>ts", function() require("trouble").open("symbols") end)
+vim.keymap.set("n", "<leader>td", function() require("trouble").toggle("diagnostics") end)
+vim.keymap.set("n", "<leader>tq", function() require("trouble").toggle("quickfix") end)
+vim.keymap.set("n", "<leader>tl", function() require("trouble").toggle("loclist") end)
+vim.keymap.set("n", "<leader>tr", function() require("trouble").toggle("lsp_references") end)
+vim.keymap.set("n", "<leader>ts", function() require("trouble").toggle("symbols") end)
 
 -- hover
 vim.keymap.set("n", "<leader>h", require("hover").hover, {desc = "hover.nvim"})

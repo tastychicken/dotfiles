@@ -143,7 +143,7 @@ db_tunnel () {
                 echo "resetting db-tunnel"
                 kill $db_tunnel_pid
         fi
-        ssh -N -f -L 9001:localhost:5432 pds-postgres
+        ssh -N -f -L 1337:localhost:5432 pds-postgres
 }
 
 eval `ssh-agent -s` &> /dev/null
