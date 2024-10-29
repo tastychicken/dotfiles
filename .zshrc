@@ -72,8 +72,8 @@ ZSH_THEME="agnoster"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git tmux)
 
-#ZSH_TMUX_AUTOSTART=true
-#ZSH_TMUX_AUTOCONNECT=true
+ZSH_TMUX_AUTOSTART=true
+ZSH_TMUX_AUTOCONNECT=true
 
 source $ZSH/oh-my-zsh.sh
 
@@ -147,3 +147,4 @@ db_tunnel () {
 }
 
 eval `ssh-agent -s` &> /dev/null
+autoload -U compinit; compinit
