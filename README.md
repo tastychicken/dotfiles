@@ -8,11 +8,12 @@ Before we can retrieve the dotfiles we have to install zsh.
 Verify that we have the latest updates:  
 `sudo apt update`
 
-Then we install zsh, curl, tmux and oh-my-zsh:
+Then we install zsh, curl, tmux, git and oh-my-zsh:
 ```
 sudo apt install zsh -y
 sudo apt install curl
 sudo apt install tmux
+sudo apt install git
 ```
 
 We also need oh-my-zsh:  
@@ -29,9 +30,6 @@ cd fonts
 Verify that it installed by running:  
 `zsh --version`
 
-Install git:  
-`sudo apt install git`
-
 Create a temporary `config` alias:  
 `alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'`
 
@@ -44,11 +42,21 @@ Checkout our dotfiles into a bare .cfg folder:
 Reset the temporary `config` alias:  
 `alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'`
 
+---
 
-To setup you run:
+# Neovim
+
+Install neovim:  
+`sudo apt install neovim`
+
+Comment out the `require('set')` and `require('remap')` lines from the vim config `init.lua` in `~/.config/nvim`.
+
+Install packer:  
+https://github.com/wbthomason/packer.nvim
+
 ```
-git init --bare $HOME/.cfg
-alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
-config config --local status.showUntrackedFiles no
-echo "alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'" >> $HOME/.bashrc
+git clone --depth 1 https://github.com/wbthomason/packer.nvim\
+ ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 ```
+
+Run the `vi` (alias for `nvim`) command and run `:PackerSync` in nvim.
