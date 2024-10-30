@@ -8,14 +8,28 @@ end)
 
 require('mason').setup()
 require('mason-lspconfig').setup({
-  ensure_installed = {'tsserver', 'rust_analyzer', 'omnisharp'},
+  ensure_installed = {'rust_analyzer', 'omnisharp'},
   handlers = {
-    lsp.default_setup
+    lsp.default_setup,
+    lua_ls = function()
+      require('lspconfig').lua_ls.setup({
+        settings = {
+          Lua = {
+            diagnostics = {
+              globals = {
+                'vim',
+                'require'
+              }
+            }
+          }
+        }
+      })
+    end
   }
 })
 
 local cmp = require('cmp')
-local cmp_action = require('lsp-zero').cmp_action()
+local cmp_select = {behavior = cmp.SelectBehavior.Select}
 cmp.setup({
   window = {
     completion = cmp.config.window.bordered(),
@@ -28,7 +42,6 @@ cmp.setup({
     ['<C-space>'] = cmp.mapping.complete({ select = true }),
   })
 })
-local cmp_select = {behavior = cmp.SelectBehavior.Select}
 
 lsp.set_preferences({
     suggest_lsp_servers = false,
