@@ -6,7 +6,12 @@ return require('packer').startup(function(use)
 
   use { "nvim-treesitter/nvim-treesitter", {run =  ":TSUpdate"} }
 
-  use "rmagatti/goto-preview"
+  use {
+    "rmagatti/goto-preview",
+    config = function()
+      require('goto-preview').setup {}
+    end
+  }
 
   use { "windwp/nvim-autopairs", config = function() require("nvim-autopairs").setup {} end }
 
@@ -19,7 +24,10 @@ return require('packer').startup(function(use)
 
   use {
     "nvim-telescope/telescope.nvim", tag = "0.1.8",
-    requires = { {"nvim-lua/plenary.nvim"} }
+    requires = {
+      "nvim-lua/plenary.nvim",
+      "nvim-tree/nvim-web-devicons"
+    }
   }
 
   use {
@@ -31,8 +39,8 @@ return require('packer').startup(function(use)
     config = function()
       require("nvim-web-devicons").setup {}
       require("trouble").setup {
-      focus = true,
-    }
+        focus = true
+      }
     end
   }
 
@@ -70,7 +78,7 @@ return require('packer').startup(function(use)
           require("luasnip").lsp_expand(args.body)
         end
       },
-  
+
       sources = {
         { name = "luasnip" },
         -- more sources

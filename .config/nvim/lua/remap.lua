@@ -21,7 +21,7 @@ vim.keymap.set("n", "<leader>td", function() require("trouble").toggle("diagnost
 vim.keymap.set("n", "<leader>tq", function() require("trouble").toggle("quickfix") end)
 vim.keymap.set("n", "<leader>tl", function() require("trouble").toggle("loclist") end)
 vim.keymap.set("n", "<leader>tr", function() require("trouble").toggle("lsp_references") end)
-vim.keymap.set("n", "<leader>ts", function() require("trouble").toggle("symbols") end)
+vim.keymap.set("n", "<leader>ts", "<cmd>Trouble symbols toggle win.type=split win.position=left focus=true<cr>")
 
 -- hover
 vim.keymap.set("n", "<leader>h", require("hover").hover, {desc = "hover.nvim"})
