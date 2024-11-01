@@ -36,6 +36,20 @@ https://virtio-fs.gitlab.io/howto-windows.html
 ## Setup Video Driver
 
 - Click the 'Video <X>' button in the left-hand menu.
-- Change the 'Model' for video to 'virtio'
+- Change the 'Model' for video to 'QXL'
 
 This enables better resolutions.
+
+To get auto resize to work with all kinds of resolution we need the correct guest tools installed:  
+https://pve.proxmox.com/wiki/Windows_VirtIO_Drivers
+
+After that we need to change the QXL XML to something similar to:  
+```
+<video>
+  <model type="qxl" ram="131072" vram="65536" vgamem="65536" heads="1" primary="yes"/>
+  <alias name="video0"/>
+  <address type="pci" domain="0x0000" bus="0x00" slot="0x01" function="0x0"/>
+</video>
+```
+
+The main part here is the `vgamem` attribute on the `model` tag. The defaults are usually to low to allow proper ultra-wide resolutions.
