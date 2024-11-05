@@ -74,6 +74,7 @@ plugins=(git tmux)
 
 ZSH_TMUX_AUTOSTART=true
 ZSH_TMUX_AUTOCONNECT=true
+ZSH_TMUX_UNICODE=true
 
 source $ZSH/oh-my-zsh.sh
 
@@ -110,6 +111,9 @@ alias fucking='sudo'
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 alias i='rm -rf node_modules/ && time npm install'
 
+# get playlist uri by hovering over share meny and holding ALT
+alias its-friday='playerctl shuffle off && playerctl open spotify:playlist:2hxfAM03amMsLTVgEQwz6K'
+
 # http://www.bigsoft.co.uk/blog/2008/04/11/configuring-ls_colors
 # no = NORMAL/DEFAULT
 # di = Directory, ow = Other Writeable, st = Sticky, tw = Sticky Writeable
@@ -122,7 +126,7 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # disable starting browser until windows terminal + tmux issues are fixed
-export BROWSER=none
+# export BROWSER=none
 
 alias pds-tunnel="pds_tunnel"
 pds_tunnel () {
