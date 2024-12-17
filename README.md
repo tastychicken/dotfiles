@@ -65,5 +65,5 @@ Run the `vi` (alias for `nvim`) command and run `:PackerSync` in nvim.
 
 # Gnome
 
-Set dash to dock action
+Set dash to dock action:  
 `gsettings set org.gnome.shell.extensions.dash-to-dock click-action 'focus-minimize-or-previews'`
