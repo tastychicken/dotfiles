@@ -83,7 +83,7 @@ source $ZSH/oh-my-zsh.sh
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
-# export LANG=en_US.UTF-8
+export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
@@ -91,6 +91,8 @@ source $ZSH/oh-my-zsh.sh
 # else
 #   export EDITOR='mvim'
 # fi
+export EDITOR='nvim'
+export SUDO_EDITOR='nvim'
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -106,13 +108,17 @@ source $ZSH/oh-my-zsh.sh
 
 # jari conf
 alias vi='nvim'
-alias psx='powershell.exe'
 alias fucking='sudo'
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 alias i='rm -rf node_modules/ && time npm install'
+alias tmux-layout='~/.local/bin/tmux-layout.sh'
+alias tl='tmux-layout'
+alias tls='tmux list-sessions'
+alias get-local-ip='ip a | grep wlp0s20f3'
+alias pg='sudo service postgresql@16-main start'
 
 # get playlist uri by hovering over share meny and holding ALT
-alias its-friday='playerctl shuffle off && playerctl open spotify:playlist:2hxfAM03amMsLTVgEQwz6K'
+alias its-friday='~/.local/bin/play-spotify-playlist.sh spotify:playlist:2hxfAM03amMsLTVgEQwz6K'
 
 # http://www.bigsoft.co.uk/blog/2008/04/11/configuring-ls_colors
 # no = NORMAL/DEFAULT
@@ -125,18 +131,17 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-# disable starting browser until windows terminal + tmux issues are fixed
-# export BROWSER=none
+# functions
+alias get-cert-fp="get_cert_fingerprint"
+get_cert_fingerprint () {
+  file=${1}
+  openssl x509 -fingerprint -in $file -noout | sed "s/^.\{17\}//g" | sed "s/://g"
+}
 
-alias pds-tunnel="pds_tunnel"
-pds_tunnel () {
-        pds_tunnel_pid=$(pgrep -o -f "ssh -N -f -L 6666:localhost:5432 per-lnx02-admin")
-        if [[ -n $pds_tunnel_pid ]]
-        then
-                echo "resetting pds-tunnel"
-                kill $pds_tunnel_pid
-        fi
-        ssh -N -f -L 6666:localhost:5432 per-lnx02-admin
+alias get-cert-pk="get_cert_privatekey"
+get_cert_privatekey () {
+  file=${1}
+  openssl pkcs12 -in $file -nocerts -nodes | tail -n +8 | awk -v ORS='\\n' '1' | sed "s/.\{2\}$//"; echo
 }
 
 alias db-tunnel="db_tunnel"
@@ -149,6 +154,13 @@ db_tunnel () {
         fi
         ssh -N -f -L 1337:localhost:5432 pds-postgres
 }
+
+# neovim
+# curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
+# chmod u+x nvim.appimage
+# ./nvim.appimage --appimage-extract
+# sudo mv squashfs-root /
+# sudo ln -s /squashfs-root/AppRun /usr/bin/nvim
 
 eval `ssh-agent -s` &> /dev/null
 autoload -U compinit; compinit

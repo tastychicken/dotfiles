@@ -72,7 +72,8 @@ return require('packer').startup(function(use)
   use {
     "hrsh7th/nvim-cmp",
     config = function ()
-      require("cmp").setup {
+      local cmp = require("cmp")
+      cmp.setup {
       snippet = {
         expand = function(args)
           require("luasnip").lsp_expand(args.body)
@@ -83,6 +84,7 @@ return require('packer').startup(function(use)
         { name = "luasnip" },
         -- more sources
       },
+      run = "make install_jsregexp"
     }
     end
   }
@@ -117,7 +119,12 @@ return require('packer').startup(function(use)
   use({
     "jackMort/ChatGPT.nvim",
       config = function()
-        require("chatgpt").setup()
+        require("chatgpt").setup({
+          api_key_cmd = "op read 'op://private/ChatGPT API Key/Password' --no-newline",
+          api_host_cmd = "echo -n https://api.openai.com/v1/chat/completions",
+          api_type_cmd = "echo chat",
+          api_model = "echo gpt-4-turbo"
+        })
       end,
       requires = {
         "MunifTanjim/nui.nvim",
@@ -125,4 +132,12 @@ return require('packer').startup(function(use)
         "nvim-telescope/telescope.nvim"
       }
   })
+
+  -- install without yarn or npm
+  use({
+      "iamcco/markdown-preview.nvim",
+      run = function() vim.fn["mkdp#util#install"]() end,
+  })
+  
+  use({ "iamcco/markdown-preview.nvim", run = "cd app && npm install", setup = function() vim.g.mkdp_filetypes = { "markdown" } end, ft = { "markdown" }, })
 end)
