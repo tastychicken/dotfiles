@@ -117,8 +117,10 @@ alias tls='tmux list-sessions'
 alias get-local-ip='ip a | grep wlp0s20f3'
 alias pg='sudo service postgresql@16-main start'
 
-# get playlist uri by hovering over share meny and holding ALT
+# script aliases
 alias its-friday='~/.local/bin/play-spotify-playlist.sh spotify:playlist:2hxfAM03amMsLTVgEQwz6K'
+alias get-cert-fp="~/.local/bin/get-certificate-fingerprint.sh"
+alias get-cert-pk="~/.local/bin/get-certificate-privatekey.sh"
 
 # http://www.bigsoft.co.uk/blog/2008/04/11/configuring-ls_colors
 # no = NORMAL/DEFAULT
@@ -126,23 +128,13 @@ alias its-friday='~/.local/bin/play-spotify-playlist.sh spotify:playlist:2hxfAM0
 # fi = File, ex = Executable, ln = Link
 LS_COLORS='no=00;37:di=02;40:ow=00;41:st=00;41:tw=00;41:fi=00;97:ex=31;37:ln=04;37:pi=00;35:do=00;31:bd=00;32:cd=00;32:or=00;32:so=00;32:su=00;35:sg=00;35'
 
+# env
+export LC_COLLATE=C
+
 # nvm conf
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-# functions
-alias get-cert-fp="get_cert_fingerprint"
-get_cert_fingerprint () {
-  file=${1}
-  openssl x509 -fingerprint -in $file -noout | sed "s/^.\{17\}//g" | sed "s/://g"
-}
-
-alias get-cert-pk="get_cert_privatekey"
-get_cert_privatekey () {
-  file=${1}
-  openssl pkcs12 -in $file -nocerts -nodes | tail -n +8 | awk -v ORS='\\n' '1' | sed "s/.\{2\}$//"; echo
-}
 
 alias db-tunnel="db_tunnel"
 db_tunnel () {
